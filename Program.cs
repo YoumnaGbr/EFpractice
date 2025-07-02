@@ -1,5 +1,6 @@
 using EFpractice.DataBase;
 using EFpractice.Services;
+using EFpractice.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFpractice
@@ -17,6 +18,8 @@ namespace EFpractice
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+            builder.Services.AddScoped<IUserService,UserService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
